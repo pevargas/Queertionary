@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  ul
+    each term, i in terms
+      li
+        a(href="/define/#{term.word}") #{term.word}
+
+  form(name="addTerm", method="post", action="/define")
+    label(for="term") Add a Term
+    input(type="text", placeholder="Term to Add", name="term")
+    button(type="submit") Submit
+

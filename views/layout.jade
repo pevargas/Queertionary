@@ -1,0 +1,30 @@
+doctype html
+html
+  head
+    title Queerionary | #{ title }
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(href="/public/js/masonry.pkgd.min.js")
+    script(href="/public/js/queertionary.js")
+
+  body
+    div.container
+      nav
+        menu
+          li
+            a.black-back(href="/" title="Go Home, Dorothy") 
+              span Queertionary
+          li
+            a.red-back(href="/define" title="Cruisin' in the park after dark") 
+             span Lookup
+      section.main
+        header
+          block head
+        article
+          if msg
+            p msg
+          block content
+      footer
+        ul.foot
+          li
+            a.blue-back(href="http://www.vargascorpus.com")
+              span &copy; Patrick E Vargas

@@ -1,0 +1,109 @@
+@red:    rgb( 215,  25,  32 );
+@yellow: rgb( 255, 209,   5 );
+@blue:   rgb(  80, 165, 220 );
+@black:  rgb(   0,   0,   0 );
+@white:  rgb( 255, 255, 255 );
+
+@skewamt:     45deg;
+@negskewamt: -45deg;
+
+.blue-back   { background-color: @blue;   }
+.red-back    { background-color: @red;    }
+.yellow-back { background-color: @yellow; }
+.black-back  { background-color: @black; }
+
+.skew(@amt) {
+  -webkit-transform: skew(@amt);
+     -moz-transform: skew(@amt);
+       -o-transform: skew(@amt);
+          transform: skew(@amt);
+}
+
+* { 
+  padding: 0px; 
+  margin:  0px;
+}
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: @white;
+  background-image:      url('../images/denver-pride.jpg');
+  backgorund-color:      @blue;
+  background-size:       cover;
+  background-repeat:     no-repeat;
+  background-origin:     center;
+  background-attachment: fixed;
+}
+
+
+a {
+  color: @yellow;
+  text-decoration: none;
+}
+
+.container {
+  width: 1024px;
+  margin: 0 auto;
+}
+
+nav {
+  top: 0;
+}
+.main {
+  background-color: fadeout(@black, 30%);
+  padding: 2em;
+  margin:  1em 0em;
+  overflow: auto;
+  clear: both;
+}
+.item {
+  display: block;
+  // width:   25%;
+}
+blockquote {
+  font-style: italic;
+}
+.tags {
+  list-style: none;
+  li {
+    display: inline-block;
+  }
+}
+.definitions {
+  width: 30%;
+  float: left;
+}
+.examples {
+  width: 65%;
+  float: right;
+}
+
+menu, .foot {
+  list-style:  none;
+  font-family: 'Handlee';
+  margin-left: 1.5em;
+  li {
+    display: inline-block;
+    a {
+      padding: 10px 15px 10px 15px;
+      display: inline-block;
+      color:   @white;
+      .skew(@negskewamt);
+      span {
+        display: inline-block;
+        .skew(@skewamt);
+      }
+    }
+  }
+}
+.foot {
+  float:        right;
+  margin-right: 1.5em;
+}
+
+@font-face {
+  font-family: 'Handlee';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Handlee Regular'), local('Handlee-Regular'), url(http://themes.googleusercontent.com/static/fonts/handlee/v3/lXdgF9zSHTlhzKRElEhHowLUuEpTyoUstqEm5AMlJo4.woff) format('woff');
+}

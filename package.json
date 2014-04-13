@@ -1,0 +1,27 @@
+{
+  "author"      : "Patrick E. Vargas <patrick@vargascorpus.com>",
+  "name"        : "Queertionary",
+  "description" : "Queertionary is a queer dictionary. Queertionary pulls in definitions for queer jargon alongside uses of that word. User can explore what queer words are defined to various people and how they are used in practice.",
+  "version"     : "0.0.1",
+  "private"     : true,
+  "scripts" : {
+    "start" : "node ./bin/www"
+  },
+  "dependencies" : {
+    "express"          : "3.4.8",
+    "static-favicon"   : "1.0.0",
+    "morgan"           : "1.0.0",
+    "cookie-parser"    : "1.0.1",
+    "body-parser"      : "1.0.0",
+    "debug"            : "0.7.4",
+    "jade"             : "1.3.0",
+    "less-middleware"  : "0.1.15",
+    "mongoose"         : "3.8.8",
+    "urban"            : "0.2.0",
+    "tumblr.js"        : "0.0.4",
+    "twit"             : "1.1.13",
+    "mediawiki-api"    : "0.1.5",
+    "node-rest-client" : "0.8.3",
+    "masonry.js"       : "3.1.5"
+  }
+}

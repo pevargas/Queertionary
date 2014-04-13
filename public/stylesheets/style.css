@@ -1,0 +1,102 @@
+.blue-back {
+  background-color: #50a5dc;
+}
+.red-back {
+  background-color: #d71920;
+}
+.yellow-back {
+  background-color: #ffd105;
+}
+.black-back {
+  background-color: #000000;
+}
+* {
+  padding: 0px;
+  margin: 0px;
+}
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #ffffff;
+  background-image: url('../images/denver-pride.jpg');
+  backgorund-color: #50a5dc;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-origin: center;
+  background-attachment: fixed;
+}
+a {
+  color: #ffd105;
+  text-decoration: none;
+}
+.container {
+  width: 1024px;
+  margin: 0 auto;
+}
+nav {
+  top: 0;
+}
+.main {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 2em;
+  margin: 1em 0em;
+  overflow: auto;
+  clear: both;
+}
+.item {
+  display: block;
+}
+blockquote {
+  font-style: italic;
+}
+.tags {
+  list-style: none;
+}
+.tags li {
+  display: inline-block;
+}
+.definitions {
+  width: 30%;
+  float: left;
+}
+.examples {
+  width: 65%;
+  float: right;
+}
+menu,
+.foot {
+  list-style: none;
+  font-family: 'Handlee';
+  margin-left: 1.5em;
+}
+menu li,
+.foot li {
+  display: inline-block;
+}
+menu li a,
+.foot li a {
+  padding: 10px 15px 10px 15px;
+  display: inline-block;
+  color: #ffffff;
+  -webkit-transform: skew(-45deg);
+  -moz-transform: skew(-45deg);
+  -o-transform: skew(-45deg);
+  transform: skew(-45deg);
+}
+menu li a span,
+.foot li a span {
+  display: inline-block;
+  -webkit-transform: skew(45deg);
+  -moz-transform: skew(45deg);
+  -o-transform: skew(45deg);
+  transform: skew(45deg);
+}
+.foot {
+  float: right;
+  margin-right: 1.5em;
+}
+@font-face {
+  font-family: 'Handlee';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Handlee Regular'), local('Handlee-Regular'), url(http://themes.googleusercontent.com/static/fonts/handlee/v3/lXdgF9zSHTlhzKRElEhHowLUuEpTyoUstqEm5AMlJo4.woff) format('woff');
+}
