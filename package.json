@@ -8,6 +8,7 @@
     "start" : "node ./bin/www"
   },
   "dependencies" : {
+    "node"             : "0.10.26",
     "express"          : "3.4.8",
     "static-favicon"   : "1.0.0",
     "morgan"           : "1.0.0",
