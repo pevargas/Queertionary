@@ -34,7 +34,9 @@ body {
   background-origin:     center;
   background-attachment: fixed;
 }
-
+h1, h2 {
+  font-family: "Handlee";
+}
 
 a {
   color: @yellow;
@@ -58,6 +60,9 @@ nav {
 }
 .item {
   display: block;
+  padding: 0.5em;
+  margin:  0.5em;
+  background-color: @red;
   // width:   25%;
 }
 blockquote {
@@ -66,9 +71,44 @@ blockquote {
 .tags {
   list-style: none;
   li {
-    display: inline-block;
+    display:       inline-block;
+    background:    @yellow;
+    margin:        0.5em;
+    padding:       0.5em;
+    border-radius: 0.5em;
+    // border-bottom-left-radius: 0.5em;
+    // border-top-left-radius:    0.5em;
+    // // &:after {
+    //   content: "";
+    //   float: right;
+    //   width:  0;
+    //   height: 0;
+    //   border-top:    30px solid transparent;
+    //   border-left:   30px solid @yellow;
+    //   border-bottom: 30px solid transparent;
+    // }
+    // &:before {
+    //   content: "";
+    //   position: absolute;
+    //   top: 27px;
+    //   right: 14px;
+    //   width: 8px;
+    //   height: 8px;
+    //   border-radius: 4px;
+    //   background: @blue;
+    //   -moz-box-shadow: -1px -1px 1px #424444;
+    //   -webkit-box-shadow: -1px -1px 1px #424444;
+    //   box-shadow: -1px -1px 1px #424444;
+    // }
   }
 }
+.entry {
+  // border: 0.5em solid @blue;
+  background-color: @blue;
+  margin: 0.5em;
+  padding: 0.5em;
+}
+
 .definitions {
   width: 30%;
   float: left;

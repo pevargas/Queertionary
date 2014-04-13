@@ -11,7 +11,7 @@ block content
     h2 Definitions
     each entry in urban.list
       if entry.thumbs_up - entry.thumbs_down > 10
-        div
+        div.entry
           p!= entry.definition.replace(/\n/g, '<br />')
           blockquote!= entry.example.replace(/\n/g, '<br />')
           cite 
@@ -41,8 +41,8 @@ block content
               blockquote!= post.text.replace(/\n/g, '<br />')
               cite!= post.source.replace(/\n/g, '<br />')
           ul.tags
-          each tag in post.tags
-            li= tag
+            each tag in post.tags
+              li!= tag
 
   //- h2 Urban Dictionary
   //- p Tags: #{urban.tags}
