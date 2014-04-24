@@ -12,8 +12,13 @@ var users        = require('./routes/user');
 
 var app          = express();
 
-//mongoose.connect( 'mongodb://localhost/queertionary' );
-mongoose.connect( process.env.MONGOHQ_URL );
+app.configure('development', function(){
+    mongoose.connect( 'mongodb://localhost/queertionary' );
+});
+
+app.configure('production', function(){
+    mongoose.connect( process.env.MONGOHQ_URL );
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

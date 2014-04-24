@@ -7,10 +7,17 @@
 @skewamt:     45deg;
 @negskewamt: -45deg;
 
-.blue-back   { background-color: @blue;   }
-.red-back    { background-color: @red;    }
+@amount: 10%;
+
+.blue-back   {  background-color: @blue; }
+.red-back    { background-color: @red; }
 .yellow-back { background-color: @yellow; }
 .black-back  { background-color: @black; }
+
+a.blue-back:hover   { background-color: lighten(@blue, @amount); }
+a.red-back:hover    { background-color: lighten(@red, @amount); }
+a.yellow-back:hover { background-color: darken(@yellow, @amount); }
+a.black-back:hover  { background-color: lighten(@black, @amount); }
 
 .skew(@amt) {
   -webkit-transform: skew(@amt);
@@ -24,9 +31,7 @@
   margin:  0px;
 }
 
-body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  color: @white;
+html {
   background-image:      url('../images/denver-pride.jpg');
   backgorund-color:      @blue;
   background-size:       cover;
@@ -34,90 +39,50 @@ body {
   background-origin:     center;
   background-attachment: fixed;
 }
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: @white;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
 h1, h2 {
   font-family: "Handlee";
 }
-
 a {
   color: @yellow;
   text-decoration: none;
 }
-
-.container {
-  width: 1024px;
+blockquote {
+  margin-left: 1em;
+  border-left: 2px solid @yellow;
+  padding-left: 1em;
+  font-style: italic;
+}
+header {
+  text-align: center;
+}
+.center {
+  width: 80%;
+  min-width: 960px;
   margin: 0 auto;
 }
 
-nav {
+.content {
+  position: fixed;
   top: 0;
-}
-.main {
-  background-color: fadeout(@black, 30%);
-  padding: 2em;
-  margin:  1em 0em;
+  left: 0;
+  width: 100%;
+  height: 100%;
   overflow: auto;
-  clear: both;
+  background-color: fadeout(@black, 30%);
+  z-index: 5;
 }
-.item {
-  display: block;
-  padding: 0.5em;
-  margin:  0.5em;
-  background-color: @red;
-  // width:   25%;
+nav {
+  margin-bottom: 1em;
 }
-blockquote {
-  font-style: italic;
-}
-.tags {
-  list-style: none;
-  li {
-    display:       inline-block;
-    background:    @yellow;
-    margin:        0.5em;
-    padding:       0.5em;
-    border-radius: 0.5em;
-    // border-bottom-left-radius: 0.5em;
-    // border-top-left-radius:    0.5em;
-    // // &:after {
-    //   content: "";
-    //   float: right;
-    //   width:  0;
-    //   height: 0;
-    //   border-top:    30px solid transparent;
-    //   border-left:   30px solid @yellow;
-    //   border-bottom: 30px solid transparent;
-    // }
-    // &:before {
-    //   content: "";
-    //   position: absolute;
-    //   top: 27px;
-    //   right: 14px;
-    //   width: 8px;
-    //   height: 8px;
-    //   border-radius: 4px;
-    //   background: @blue;
-    //   -moz-box-shadow: -1px -1px 1px #424444;
-    //   -webkit-box-shadow: -1px -1px 1px #424444;
-    //   box-shadow: -1px -1px 1px #424444;
-    // }
-  }
-}
-.entry {
-  // border: 0.5em solid @blue;
-  background-color: @blue;
-  margin: 0.5em;
-  padding: 0.5em;
-}
-
-.definitions {
-  width: 30%;
-  float: left;
-}
-.examples {
-  width: 65%;
-  float: right;
-}
-
 menu, .foot {
   list-style:  none;
   font-family: 'Handlee';
@@ -136,9 +101,105 @@ menu, .foot {
     }
   }
 }
-.foot {
-  float:        right;
-  margin-right: 1.5em;
+footer {
+  overflow: auto;
+  position: fixed;
+  display: block;
+  bottom: 0;
+  .foot {
+    float:        right;
+    margin-right: 1.5em;
+  }
+}
+#bin {
+  text-align: center;
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  z-index: -1;
+  .item {
+    overflow: auto;
+    width:    20%;
+    img {
+      margin: 0px;
+      width:  100%;
+      height: auto;
+      display: block;
+    }
+  }
+}
+
+.urban { 
+  background-color:      fadeout(@blue, 50%);
+  // background-image:      url('../images/urban-logo.jpg');
+  // background-position:   bottom right;
+  // background-size:       50px;
+  // background-repeat:     no-repeat;
+  margin: 1em;
+  padding: 1em;
+}
+
+// .tags {
+//   list-style: none;
+//   li {
+//     display:       inline-block;
+//     background:    @yellow;
+//     margin:        0.5em;
+//     padding:       0.5em;
+//     border-radius: 0.5em;
+//   }
+// }
+// .entry {
+//   background-color: @blue;
+//   margin: 0.5em;
+//   padding: 0.5em;
+// }
+
+// .definitions {
+//   width: 30%;
+//   float: left;
+// }
+// .examples {
+//   width: 65%;
+//   float: right;
+// }
+
+// This is the list of all the words
+ul.terms {
+  list-style-type: none;
+  font-size: 3em;
+  font-family: 'Handlee';
+  text-align: center;
+  li {
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    a {
+      padding: 0.5em 1em 0.5em 1em;
+      display: inline-block;
+      color:   @white;
+      .skew(@negskewamt);
+      span {
+        display: inline-block;
+        .skew(@skewamt);
+      }
+    }
+  }
+}
+
+// Used on pages that define the words
+.title-term {
+  font-size: 4em;
+  display: block;
+  margin: 10px auto;
+  padding: 0.5em 1em 0.5em 1em;
+  display: inline-block;
+  color:   @white;
+  .skew(@negskewamt);
+  span {
+    display: inline-block;
+    .skew(@skewamt);
+  }
 }
 
 @font-face {

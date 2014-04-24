@@ -1,11 +1,11 @@
 var mongoose = require('mongoose');
 var Term     = require('../models/term.js');
-// var urban    = require('urban');
+var async    = require('async');
 
-var http         = require('http');
+var http     = require('http');
 
-var tumblr   = require('tumblr.js');
-var tumblrclient   = tumblr.createClient({ consumer_key: 'R2IUz11uULHiG7BIl9xEcs7csQxoRKVVCyP6bzBLDVxbIotC8R' });
+var tumblr   = require('tumblr.js').createClient({ consumer_key: 'R2IUz11uULHiG7BIl9xEcs7csQxoRKVVCyP6bzBLDVxbIotC8R' });
+    // tumblr   = tumblr;
 
 var MediaWikiApi = require('mediawiki-api');
 wiki = new MediaWikiApi('en.wikipedia.org');
@@ -26,101 +26,34 @@ exports.index = function(req, res){
 
 /* GET List of Terms page*/
 exports.showAll = function(req, res) {
-  Term.find(function(err, terms, count){
+  Term.find({}, null, {sort: {word: 1}}, function(err, terms, count){
     res.render('list', { 
-      title: 'Term List',
+      title: 'List o\' Words',
       terms: terms
     });
   });
 };
 
-function ud(term) {
-  var urbandic = urban(term);
-  urbandic.first(function(json) {
-    return json;
-  });
-  return null;
-}
-
-function tumb(term) {
-  var result = null;
-  // Make the request
-  client.tagged('gif', function (err, data) {
-    if (err) console.error(err);
-    console.log(data);
-    result = data;
-  });
-
-  return result;
-}
-
-// function html (raw) {
-//   var e = document.createElement('div');
-//   e.innerHTML = raw;
-//   return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-// }
-// function json (raw) {
-//   var decode = html(raw);
-//   var json = eval("(" + decode + ")");
-//   console.debug(json);
-//   return json;
-// }
-
+/* Get the word on the url and find it in the different social media sites */
 exports.showTerm = function(req, res) {
   Term.findOne({ word: req.params.word }, function(err, term) {
     if(err) console.error(err);
-    // res.send(tumb(term.word) + "hello");
-    //urban: ud(term.word) 
-    // var tposts = tumb(term.word);
-    // console.log(tposts);
-    tumblrclient.tagged( term.word, function( err, tumblrdata ) {
+    
+    // Call ALL the social media sites
+    async.parallel({
+      tumblr: function(callback) { call_tumblr(term.word, callback); },
+      urban:  function(callback) { call_urban(term.word,  callback); } 
+    },
+    function(err, results) {
       if (err) console.error(err);
-      // wiki.getArticleContents(term.word, function(err, wikidata) {
-      //   if (err) console.error(err);
-        // var options = {
-        //   host: 'api.urbandictionary.com',
-        //   port: 80,
-        //   path: '/v0/define?term=' + encodeURI(term.word),
-        //   headers: {
-        //     'content-type': 'text/plain'
-        //   }
-        // };
-
-        // direct way
-        client.get('http://api.urbandictionary.com/v0/define?term=' + encodeURI(term.word), function(urban, response){
-
-        // http.get(options, function(urb) {
-        //   console.log("Got response: " + urb.statusCode);
-        //   urb.on('data', function(rawurban) {
-            // var json = JSON.parse(urban.toString());
-            // console.log(json);
-            res.render('show', { 
-              title: term.word,
-              term: term, 
-              // wikipedia: wikidata,
-              urban: urban,
-              tumblr: tumblrdata
-            }); // Render
-
-        });
-
-
-        //   });// on
-
-        // }).on('error', function(e) {
-        //   console.error(e.message);
-        // }); // get
-
-      // }); // Wiki
-    }); // Tumblr
-  });
-
-  // Term.findOne({word: req.params.word}, function(error, term){
-  //   res.render('/term/' + term.word, {
-  //     title: term.word,
-  //     term: term
-  //   });
-  // });
+      res.render('show', { 
+        title: term.word,
+        term: term, 
+        urban:  results.urban,
+        tumblr: results.tumblr
+      }); // Render
+    }); // Final Callback
+  }); // async
 };
 
 exports.addTerm = function(req, res) {
@@ -135,3 +68,34 @@ exports.deleteTerm = function(req, res) {
   });
 }
 
+function call_tumblr(word, callback) {
+  tumblr.tagged( word, { type: 'photo', limit: '40' }, function parse_tumblr( err, data ) {
+    if (err) console.error(err);
+    var photos = [];
+    Array.prototype.forEach.call(data, function(el, i){
+      if ( el.type == "photo") {
+        el.photos.forEach(function(pic) {
+          photos.push(pic.alt_sizes[0]);
+        });
+      }
+    });
+    callback(null, photos);
+  });
+}
+
+function call_urban(word, callback) {
+  var url = 'http://api.urbandictionary.com/v0/define?term=' + encodeURI(word);
+  client.get(url, function parse_urban(data, response) {
+    var terms = [];
+    var number = 0;
+    Array.prototype.forEach.call(data.list, function(el, i) {
+      if (el.thumbs_up - el.thumbs_down > 10) {
+        if (number++ < 3) {
+          terms.push(el);
+        }
+      }
+    });
+
+    callback(null, terms);
+  });
+}

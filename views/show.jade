@@ -1,49 +1,74 @@
 extends layout
 
+block bin
+  section#bin.js-masonry(data-masonry-options='{ "itemSelector": ".item" }')
+    each pic in tumblr
+      div.item
+        img(src="#{pic.url}") 
+
 block head
-  h1= title
+  h1.title-term.blue-back
+    span= title
 
 block content
-  form(name="deleteTerm", method="delete", action="/define/#{encodeURI(title)}")
-    button(type="submit") Disown #{title}?
 
-  div.definitions
+  //- h3 Urban Dictionary
+  //- pre= JSON.stringify(urban, null, 2)
+
+  each entry in urban
+    div.urban
+      p!= entry.definition.replace(/\n/g, '<br />')
+      blockquote!= entry.example.replace(/\n/g, '<br />')
+      //- cite 
+      //-   a(href="#{entry.permalink}" target="_blank")= entry.author
+
+    //- each post in tumblr
+    //-     div.item.tumblr
+    //-       case post.type
+    //-         when "text"
+    //-           if post.title
+    //-             h3= post.title
+    //-           p!= post.body.replace(/\n/g, '<br />')
+    //-         when "photo"
+    //-           each photo in post.photos
+    //-             img(src="#{photo.alt_sizes[1].url}" alt="#{post.slug}")
+    //-           p!= post.caption.replace(/\n/g, '<br />')
+    //-         when "quote"
+    //-           blockquote!= post.text.replace(/\n/g, '<br />')
+    //-           cite!= post.source.replace(/\n/g, '<br />')
+    //-         when "link"
+    //-           a(href="#{post.url}")= post.title
+    //-           p!= post.description.replace(/\n/g, '<br />')
+    //-         when "video"
+    //-           p!= post.player[0].embed_code
+    //-           p!= post.caption.replace(/\n/g, '<br />')
+    //-         when "chat"
+    //-           if post.title
+    //-             h3= post.title
+    //-           ul
+    //-             each line in post.dialogue
+    //-               li
+    //-                 b= line.name
+    //-                 span!= line.phrase
+    //-         when "audio"
+    //-           p!= post.player
+    //-           p!= post.caption
+    //-         when "answer"
+    //-           blockquote!= post.question
+    //-           cite
+    //-             a(href="#{post.asking_url}")= post.asking_name
+    //-           p!= post.answer
+    //-       ul.tags
+    //-         each tag in post.tags
+    //-           li!= tag
+
+  //- div.definitions
     h2 Definitions
-    each entry in urban.list
-      if entry.thumbs_up - entry.thumbs_down > 10
-        div.entry
-          p!= entry.definition.replace(/\n/g, '<br />')
-          blockquote!= entry.example.replace(/\n/g, '<br />')
-          cite 
-            a(href="#{entry.permalink}" target="_blank")= entry.author
-
-  div.examples
+  
+  //- div.examples
     h2 Examples
     section#bin.js-masonry(data-masonry-options='{ "columnWidth": 200, "itemSelector": ".item" }')
-      each post in tumblr
-        div.item
-          case post.type
-            when "photo"
-              p!= post.caption.replace(/\n/g, '<br />')
-              each photo in post.photos
-                img(src="#{photo.alt_sizes[photo.alt_sizes.length-3].url}" alt="#{post.slug}")
-            when "text"
-              if post.title
-                h3= post.title
-              p!= post.body.replace(/\n/g, '<br />')
-            when "video"
-              p!= post.player[0].embed_code
-              p!= post.caption.replace(/\n/g, '<br />')
-            when "link"
-              a(href="#{post.url}")= post.title
-              p!= post.description.replace(/\n/g, '<br />')
-            when "quote"
-              blockquote!= post.text.replace(/\n/g, '<br />')
-              cite!= post.source.replace(/\n/g, '<br />')
-          ul.tags
-            each tag in post.tags
-              li!= tag
-
+      
   //- h2 Urban Dictionary
   //- p Tags: #{urban.tags}
   //- table(border="black")
@@ -59,40 +84,10 @@ block content
   //-         td #{entry.thumbs_up} / #{entry.thumbs_down}
   //-         td= entry.definition
   //-         td= entry.example
-
-  //- h2 Tumblr
-  //- table(border="black")
-  //-   tr
-  //-     th(width="10%") Type
-  //-     th(width="10%") Tags
-  //-     th(width="80%") Content
-  //-   each post in tumblr
-  //-     tr
-  //-       td= post.type
-  //-       td
-  //-         ul
-  //-         each tag in post.tags
-  //-           li= tag
-
-  //-       if post.type == "photo"
-  //-         td
-  //-           each photo in post.photos
-  //-             img(src=photo.alt_sizes[photo.alt_sizes.length-3].url)
-  //-       else if post.type == "text"
-  //-         td 
-  //-           if post.title
-  //-             h3= post.title
-  //-           p= post.body
-  //-       else if post.type == "video"
-  //-         td= post.player[0].embed_code
-
-  //- h2 JSON Objects
-  
+    
   //- h3 Wikipedia
   //- pre= wikipedia
 
-  //- h3 Urban Dictionary
-  //- pre= JSON.stringify(urban, null, 2)
 
   //- h3 Tumblr
   //- pre= JSON.stringify(tumblr, null, 2)

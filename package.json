@@ -25,6 +25,7 @@
     "twit"             : "1.1.13",
     "mediawiki-api"    : "0.1.5",
     "node-rest-client" : "0.8.3",
-    "masonry.js"       : "3.1.5"
+    "masonry.js"       : "3.1.5",
+    "async"            : "0.7.0"
   }
 }

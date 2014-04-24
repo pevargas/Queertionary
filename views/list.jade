@@ -1,10 +1,20 @@
 extends layout
 
 block content
-  ul
+  ul.terms
     each term, i in terms
       li
-        a(href="/define/#{term.word}") #{term.word}
+        case i % 3
+          when 0
+            a.blue-back(href="/define/#{term.word}")
+              span #{term.word}
+          when 1
+            a.red-back(href="/define/#{term.word}")
+              span #{term.word}
+          when 2
+            a.yellow-back(href="/define/#{term.word}")
+              span #{term.word}
+
 
   form(name="addTerm", method="post", action="/define")
     label(for="term") Add a Term
