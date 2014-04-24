@@ -12,13 +12,10 @@ var users        = require('./routes/user');
 
 var app          = express();
 
-app.configure('development', function(){
-    mongoose.connect( 'mongodb://localhost/queertionary' );
-});
+var mongoUri = process.env.MONGOHQ_URL ||
+               'mongodb://localhost/queertionary';
 
-app.configure('production', function(){
-    mongoose.connect( process.env.MONGOHQ_URL );
-});
+mongoose.connect( mongoUri );
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
