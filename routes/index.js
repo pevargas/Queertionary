@@ -38,6 +38,25 @@ exports.showAll = function(req, res) {
   });
 };
 
+exports.find = function(req, res) {
+  var search = req.query.search;
+  if ( search ) {
+    var foundit = false;
+    Term.findOne({ word: req.query.search }, function(err, term) {
+      if ( term ) {
+        res.redirect('/define/' + search );
+      }
+      else {
+        res.render('find', { title: 'Find a Word', found: search });
+      }
+    });
+    console.log(foundit);
+  }
+  else {
+    res.render('find', { title: 'Find a Word' });    
+  }
+};
+
 /* Get the word on the url and find it in the different social media sites */
 exports.showTerm = function(req, res) {
   Term.findOne({ word: req.params.word }, function(err, term) {

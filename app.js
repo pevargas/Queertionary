@@ -29,6 +29,7 @@ app.use(app.router);
 
 app.get('/',                routes.index);
 app.get('/disclaimer',      routes.disclaimer);
+app.get('/find',            routes.find);
 app.get('/define',          routes.showAll);
 app.post('/define',         routes.addTerm);
 app.get('/define/:word',    routes.showTerm);

@@ -10,15 +10,19 @@
 .black-back {
   background-color: #000000;
 }
+button.blue-back:hover,
 a.blue-back:hover {
   background-color: #7abbe5;
 }
+button.red-back:hover,
 a.red-back:hover {
   background-color: #e83b41;
 }
+button.yellow-back:hover,
 a.yellow-back:hover {
   background-color: #d1ab00;
 }
+button.black-back:hover,
 a.black-back:hover {
   background-color: #1a1a1a;
 }
@@ -57,6 +61,9 @@ a {
 p {
   margin: 0.5em 0;
   text-align: left;
+}
+button {
+  cursor: pointer;
 }
 blockquote {
   margin-left: 1em;
@@ -210,6 +217,40 @@ ul.terms li a span {
   transform: skew(-45deg);
 }
 .box h3 span {
+  display: inline-block;
+  -webkit-transform: skew(45deg);
+  -moz-transform: skew(45deg);
+  -o-transform: skew(45deg);
+  transform: skew(45deg);
+}
+.search {
+  clear: both;
+  display: block;
+  overflow: hidden;
+}
+.search .searchbox {
+  clear: both;
+  width: 80%;
+  display: block;
+  float: left;
+  padding: 0.25em;
+  margin: 0.25em;
+  font-size: 2em;
+}
+.search .submit {
+  display: inline-block;
+  margin: 0.5em 1.5em;
+  padding: 0.5em 1em 0.5em 1em;
+  color: #ffffff;
+  border: none;
+  float: right;
+  font-size: 1.5em;
+  -webkit-transform: skew(-45deg);
+  -moz-transform: skew(-45deg);
+  -o-transform: skew(-45deg);
+  transform: skew(-45deg);
+}
+.search .submit span {
   display: inline-block;
   -webkit-transform: skew(45deg);
   -moz-transform: skew(45deg);
