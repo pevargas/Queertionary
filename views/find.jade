@@ -1,0 +1,12 @@
+extends layout
+
+block head
+  h2.title-term.yellow-back: span Find a Word
+
+block content
+  form.search(name="findTerm", method="get", action="/find")
+    input.searchbox(type="text", placeholder="Search", name="search")
+    button.submit.blue-back(type="submit"): span Find
+
+  if ( found )
+    p "#{found}" was not found.
