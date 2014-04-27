@@ -1,4 +1,13 @@
 extends layout
 
+block head
+  h1.title-term.blue-back: span= term
+  h2.define: a(href="/define/#{term}") What does that mean?
+
 block content
-  p Welcome to #{title}
+  section.box
+    h3.blue-back: span About
+    p Queertionary is a queer dictionary. The LGBT community has developed a large list of words to help discuss the community. Browse to discover new words or search for a word you might have heard.
+  section.box
+    h3.red-back: span Disclaimer
+    p Queertionary pulls in definitions and examples from around the Internet. As such, Queertionary has little control over the content of these sources. Please use caution as some content might not be suitable for children.

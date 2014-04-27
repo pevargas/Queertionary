@@ -11,85 +11,8 @@ block head
     span= title
 
 block content
-
-  //- h3 Urban Dictionary
-  //- pre= JSON.stringify(urban, null, 2)
-
   each entry in urban
     div.urban
       p!= entry.definition.replace(/\n/g, '<br />')
       blockquote!= entry.example.replace(/\n/g, '<br />')
-      //- cite 
-      //-   a(href="#{entry.permalink}" target="_blank")= entry.author
-
-    //- each post in tumblr
-    //-     div.item.tumblr
-    //-       case post.type
-    //-         when "text"
-    //-           if post.title
-    //-             h3= post.title
-    //-           p!= post.body.replace(/\n/g, '<br />')
-    //-         when "photo"
-    //-           each photo in post.photos
-    //-             img(src="#{photo.alt_sizes[1].url}" alt="#{post.slug}")
-    //-           p!= post.caption.replace(/\n/g, '<br />')
-    //-         when "quote"
-    //-           blockquote!= post.text.replace(/\n/g, '<br />')
-    //-           cite!= post.source.replace(/\n/g, '<br />')
-    //-         when "link"
-    //-           a(href="#{post.url}")= post.title
-    //-           p!= post.description.replace(/\n/g, '<br />')
-    //-         when "video"
-    //-           p!= post.player[0].embed_code
-    //-           p!= post.caption.replace(/\n/g, '<br />')
-    //-         when "chat"
-    //-           if post.title
-    //-             h3= post.title
-    //-           ul
-    //-             each line in post.dialogue
-    //-               li
-    //-                 b= line.name
-    //-                 span!= line.phrase
-    //-         when "audio"
-    //-           p!= post.player
-    //-           p!= post.caption
-    //-         when "answer"
-    //-           blockquote!= post.question
-    //-           cite
-    //-             a(href="#{post.asking_url}")= post.asking_name
-    //-           p!= post.answer
-    //-       ul.tags
-    //-         each tag in post.tags
-    //-           li!= tag
-
-  //- div.definitions
-    h2 Definitions
-  
-  //- div.examples
-    h2 Examples
-    section#bin.js-masonry(data-masonry-options='{ "columnWidth": 200, "itemSelector": ".item" }')
-      
-  //- h2 Urban Dictionary
-  //- p Tags: #{urban.tags}
-  //- table(border="black")
-  //-   tr
-  //-     th(width="10%") Author
-  //-     th(width="10%") Thumbs Up/Down
-  //-     th(width="40%") Definition
-  //-     th(width="40%") Example
-  //-   each entry in urban.list
-  //-     if entry.thumbs_up - entry.thumbs_down > 10
-  //-       tr
-  //-         td= entry.author
-  //-         td #{entry.thumbs_up} / #{entry.thumbs_down}
-  //-         td= entry.definition
-  //-         td= entry.example
-    
-  //- h3 Wikipedia
-  //- pre= wikipedia
-
-
-  //- h3 Tumblr
-  //- pre= JSON.stringify(tumblr, null, 2)
-
  

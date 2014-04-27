@@ -24,11 +24,9 @@ html
       section.center
         nav
           menu
-            li
-              a.black-back(href="/" title="Go Home, Dorothy") 
+            li: a.black-back(href="/" title="Go Home, Dorothy") 
                 span Queertionary
-            li
-              a.red-back(href="/define" title="Cruisin' in the park after dark") 
+            li: a.red-back(href="/define" title="Cruisin' in the park after dark") 
                span Lookup
         header
           block head
@@ -38,6 +36,7 @@ html
           block content
         footer.center
           ul.foot
-            li
-              a.blue-back(href="http://www.vargascorpus.com")
+            //- li: a.red-back(href="/disclaimer")
+                span Disclaimer
+            li: a.blue-back(href="http://www.vargascorpus.com")
                 span &copy; Patrick E Vargas

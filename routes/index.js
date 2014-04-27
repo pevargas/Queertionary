@@ -1,11 +1,8 @@
 var mongoose = require('mongoose');
 var Term     = require('../models/term.js');
 var async    = require('async');
-
 var http     = require('http');
-
 var tumblr   = require('tumblr.js').createClient({ consumer_key: 'R2IUz11uULHiG7BIl9xEcs7csQxoRKVVCyP6bzBLDVxbIotC8R' });
-    // tumblr   = tumblr;
 
 var MediaWikiApi = require('mediawiki-api');
 wiki = new MediaWikiApi('en.wikipedia.org');
@@ -20,8 +17,15 @@ var client = new Client();
 // });
 
 /* GET Home Page */
-exports.index = function(req, res){
-  res.render('index', { title: 'Homepage' });
+exports.index = function(req, res) {
+  Term.random(function(err, term) {
+    res.render('index', { title: 'Homepage', term: term.word });
+  });
+};
+
+/* GET Disclaimer Page */
+exports.disclaimer = function(req, res) {
+  res.render('disclaimer', { title: 'Disclaimer' });
 };
 
 /* GET List of Terms page*/

@@ -8,12 +8,9 @@ var bodyParser   = require('body-parser');
 var mongoose     = require('mongoose');
 
 var routes       = require('./routes');
-var users        = require('./routes/user');
-
 var app          = express();
 
-var mongoUri = process.env.MONGOHQ_URL ||
-               'mongodb://localhost/queertionary';
+var mongoUri = process.env.MONGOHQ_URL || 'mongodb://localhost/queertionary';
 
 mongoose.connect( mongoUri );
 
@@ -31,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(app.router);
 
 app.get('/',                routes.index);
-app.get('/users',           users.list);
+app.get('/disclaimer',      routes.disclaimer);
 app.get('/define',          routes.showAll);
 app.post('/define',         routes.addTerm);
 app.get('/define/:word',    routes.showTerm);

@@ -9,7 +9,7 @@
 
 @amount: 10%;
 
-.blue-back   {  background-color: @blue; }
+.blue-back   { background-color: @blue; }
 .red-back    { background-color: @red; }
 .yellow-back { background-color: @yellow; }
 .black-back  { background-color: @black; }
@@ -29,6 +29,9 @@ a.black-back:hover  { background-color: lighten(@black, @amount); }
 * { 
   padding: 0px; 
   margin:  0px;
+  -webkit-box-sizing: border-box; 
+     -moz-box-sizing: border-box;    
+          box-sizing: border-box;         
 }
 
 html {
@@ -54,6 +57,10 @@ h1, h2 {
 a {
   color: @yellow;
   text-decoration: none;
+}
+p {
+  margin: 0.5em 0;
+  text-align: left;
 }
 blockquote {
   margin-left: 1em;
@@ -190,7 +197,6 @@ ul.terms {
 // Used on pages that define the words
 .title-term {
   font-size: 4em;
-  display: block;
   margin: 10px auto;
   padding: 0.5em 1em 0.5em 1em;
   display: inline-block;
@@ -202,6 +208,26 @@ ul.terms {
   }
 }
 
+.box {
+  width: 30%;
+  margin: 1em 2.5%;
+  padding: 0.5em;
+  display: block;
+  float: left;
+  background-color: fadeout(@black, 50%);
+  text-align: center;
+  h3 {
+    display: inline-block;
+    margin: 0 auto;
+    padding: 0.5em 1em 0.5em 1em;
+    color:   @white;
+    .skew(@negskewamt);
+    span {
+      display: inline-block;
+      .skew(@skewamt);
+    }
+  }
+}
 @font-face {
   font-family: 'Handlee';
   font-style: normal;
