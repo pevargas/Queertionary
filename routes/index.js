@@ -47,8 +47,33 @@ exports.find = function(req, res) {
         res.redirect('/define/' + search );
       }
       else {
-        res.render('find', { title: 'Find a Word', found: search });
-      }
+
+        // Call ALL the social media sites
+        async.parallel({
+          tumblr: function(callback) { call_tumblr(search, callback); },
+          urban:  function(callback) { call_urban(search,  callback); } 
+        },
+        function(err, results) {
+          if (err) console.error(err);
+          var tumblr = false, urban = false;
+          if ( results.tumblr.length ) tumblr = true;
+          if ( results.urban.length ) urban = true;
+
+          res.render('find', { 
+            title: 'Find a Word', 
+            found: search,
+            tumblr: tumblr,
+            urban: urban
+          });
+
+          
+          // res.render('show', { 
+          //   title: search,
+          //   urban:  results.urban,
+          //   tumblr: results.tumblr
+          // }); // Render
+        }); // Async
+      } // else
     });
     console.log(foundit);
   }
@@ -75,21 +100,21 @@ exports.showTerm = function(req, res) {
         urban:  results.urban,
         tumblr: results.tumblr
       }); // Render
-    }); // Final Callback
-  }); // async
+    }); // Async
+  }); // findOne
 };
 
 exports.addTerm = function(req, res) {
   new Term({ word: req.body.term }).save();
   res.redirect('/define');
-}
+};
 
 exports.deleteTerm = function(req, res) {
   Term.findOne({ word: req.params.word }, function(err, term) {
     term.remove();
     res.redirect('/define');
   });
-}
+};
 
 function call_tumblr(word, callback) {
   tumblr.tagged( word, { type: 'photo', limit: '40' }, function parse_tumblr( err, data ) {
@@ -104,7 +129,7 @@ function call_tumblr(word, callback) {
     });
     callback(null, photos);
   });
-}
+};
 
 function call_urban(word, callback) {
   var url = 'http://api.urbandictionary.com/v0/define?term=' + encodeURI(word);
@@ -121,4 +146,4 @@ function call_urban(word, callback) {
 
     callback(null, terms);
   });
-}
+};

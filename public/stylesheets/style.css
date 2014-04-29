@@ -74,6 +74,9 @@ blockquote {
 header {
   text-align: center;
 }
+.hidden {
+  display: none;
+}
 .center {
   width: 80%;
   min-width: 960px;
@@ -228,7 +231,7 @@ ul.terms li a span {
   display: block;
   overflow: hidden;
 }
-.search .searchbox {
+.searchbox {
   clear: both;
   width: 80%;
   display: block;
@@ -237,7 +240,7 @@ ul.terms li a span {
   margin: 0.25em;
   font-size: 2em;
 }
-.search .submit {
+.submit {
   display: inline-block;
   margin: 0.5em 1.5em;
   padding: 0.5em 1em 0.5em 1em;
@@ -250,7 +253,7 @@ ul.terms li a span {
   -o-transform: skew(-45deg);
   transform: skew(-45deg);
 }
-.search .submit span {
+.submit span {
   display: inline-block;
   -webkit-transform: skew(45deg);
   -moz-transform: skew(45deg);

@@ -74,6 +74,9 @@ blockquote {
 header {
   text-align: center;
 }
+.hidden {
+  display: none;
+}
 .center {
   width: 80%;
   min-width: 960px;
@@ -211,6 +214,7 @@ ul.terms {
   }
 }
 
+
 // Boxes on the homepage
 .box {
   width: 45%;
@@ -237,30 +241,31 @@ ul.terms {
   clear: both;
   display: block;
   overflow: hidden;
-  .searchbox {
-    clear: both;
-    width: 80%;
-    display: block;
-    float: left;
-    padding: 0.25em;
-    margin: 0.25em;
-    font-size: 2em;
-  }
-  .submit {
+}
+.searchbox {
+  clear: both;
+  width: 80%;
+  display: block;
+  float: left;
+  padding: 0.25em;
+  margin: 0.25em;
+  font-size: 2em;
+}
+.submit {
+  display: inline-block;
+  margin:  0.5em 1.5em;
+  padding: 0.5em 1em 0.5em 1em;
+  color:   @white;
+  border:  none;
+  float:   right;
+  font-size: 1.5em;
+  .skew(@negskewamt);
+  span {
     display: inline-block;
-    margin:  0.5em 1.5em;
-    padding: 0.5em 1em 0.5em 1em;
-    color:   @white;
-    border:  none;
-    float:   right;
-    font-size: 1.5em;
-    .skew(@negskewamt);
-    span {
-      display: inline-block;
-      .skew(@skewamt);
-    }
+    .skew(@skewamt);
   }
 }
+
 
 @font-face {
   font-family: 'Handlee';
