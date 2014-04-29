@@ -106,7 +106,7 @@ exports.showTerm = function(req, res) {
 
 exports.addTerm = function(req, res) {
   new Term({ word: req.body.term }).save();
-  res.redirect('/define');
+  res.redirect('/define/'+req.body.term);
 };
 
 exports.deleteTerm = function(req, res) {
