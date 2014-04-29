@@ -13,6 +13,6 @@ block content
 
   if ( tumblr && urban )
     form.search(name="addTerm", method="post", action="/define")
-      label.searchbox(for="term") Would you like to add "#{found}"" to Queertionary?
+      label.searchbox(for="term") Would you like to add "#{found}" to Queertionary?
       input.hidden(placeholder="Term to Add", name="term", value="#{found}")
       button.submit.red-back(type="submit"): span Add
