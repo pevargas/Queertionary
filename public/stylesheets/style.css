@@ -71,6 +71,9 @@ blockquote {
   padding-left: 1em;
   font-style: italic;
 }
+cite {
+  float: right;
+}
 header {
   text-align: center;
 }
@@ -101,10 +104,6 @@ menu,
   font-family: 'Handlee';
   font-size: 1.2em;
   margin-left: 1.5em;
-}
-menu .brand,
-.foot .brand {
-  font-size: 1em;
 }
 menu li,
 .foot li {

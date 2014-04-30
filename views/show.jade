@@ -21,6 +21,7 @@ block content
 
   each entry in urban
     div.urban
+      cite: a(href="#{entry.permalink}", target="_blank", alt="View on Urban Dictionary") Urban Dictionary
       p!= entry.definition.replace(/\n/g, '<br />')
       blockquote!= entry.example.replace(/\n/g, '<br />')
 

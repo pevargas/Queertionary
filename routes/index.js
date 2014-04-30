@@ -205,6 +205,7 @@ function call_urban(word, callback) {
       if (el.thumbs_up - el.thumbs_down > 10) {
         if (number++ < 3) {
           terms.push(el);
+          console.log(el);
         }
       }
     });
