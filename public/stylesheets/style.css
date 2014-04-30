@@ -99,7 +99,12 @@ menu,
 .foot {
   list-style: none;
   font-family: 'Handlee';
+  font-size: 1.2em;
   margin-left: 1.5em;
+}
+menu .brand,
+.foot .brand {
+  font-size: 1em;
 }
 menu li,
 .foot li {
