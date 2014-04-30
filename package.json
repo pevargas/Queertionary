@@ -20,7 +20,6 @@
     "jade"             : "1.3.0",
     "less-middleware"  : "0.1.15",
     "mongoose"         : "3.8.8",
-    "urban"            : "0.2.0",
     "tumblr.js"        : "0.0.4",
     "twit"             : "1.1.13",
     "mediawiki-api"    : "0.1.5",

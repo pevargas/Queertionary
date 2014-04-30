@@ -2,17 +2,26 @@ extends layout
 
 block bin
   section#bin.js-masonry(data-masonry-options='{ "itemSelector": ".item" }')
-    each pic in tumblr
+    //- each pic in tumblr
+    //-   div.item
+    //-     img(src="#{pic.url}")
+    each pic in gallery
       div.item
-        img(src="#{pic.url}") 
+        img(src="#{pic}")
 
 block head
   h1.title-term.blue-back
     span= title
 
 block content
+  form.search(name="deleteTerm", method="delete", action="/define")
+    //- label.searchbox(for="term")  "#{title}" to Queertionary?
+    input.hidden(placeholder="Term to Add", name="term", value="#{title}")
+    button.submit.red-back(type="submit"): span Disown #{title}
+
   each entry in urban
     div.urban
       p!= entry.definition.replace(/\n/g, '<br />')
       blockquote!= entry.example.replace(/\n/g, '<br />')
+
  
