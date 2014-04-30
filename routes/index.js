@@ -57,27 +57,21 @@ exports.find = function(req, res) {
         // Call ALL the social media sites
         async.parallel({
           tumblr: function(callback) { call_tumblr(search, callback); },
-          urban:  function(callback) { call_urban(search,  callback); } 
+          urban:  function(callback) { call_urban(search,  callback); },
+          flickr: function(callback) { call_flickr(search, callback); }
         },
         function(err, results) {
           if (err) console.error(err);
           var tumblr = false, urban = false;
           if ( results.tumblr.length ) tumblr = true;
-          if ( results.urban.length ) urban = true;
+          if ( results.urban.length )  urban = true;
+          if ( results.flickr.length ) flickr = true;
 
           res.render('find', { 
             title: 'Find a Word', 
             found: search,
-            tumblr: tumblr,
-            urban: urban
+            good: urban && ( tumblr || flickr )
           });
-
-          
-          // res.render('show', { 
-          //   title: search,
-          //   urban:  results.urban,
-          //   tumblr: results.tumblr
-          // }); // Render
         }); // Async
       } // else
     });
@@ -109,9 +103,9 @@ exports.showTerm = function(req, res) {
     
     // Call ALL the social media sites
     async.parallel({
-      tumblr: function(callback) { call_tumblr(term.word, callback); },
-      urban:  function(callback) { call_urban(term.word,  callback); },
-      flickr: function(callback) { call_flickr(term.word, callback); }
+      tumblr:   function(callback) { call_tumblr(term.word, callback); },
+      urban:    function(callback) { call_urban(term.word,  callback); },
+      flickr:   function(callback) { call_flickr(term.word, callback); }
     },
     function(err, results) {
       if (err) console.error(err);
