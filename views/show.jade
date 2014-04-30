@@ -14,10 +14,10 @@ block head
     span= title
 
 block content
-  form.search(name="deleteTerm", method="delete", action="/define")
-    //- label.searchbox(for="term")  "#{title}" to Queertionary?
-    input.hidden(placeholder="Term to Add", name="term", value="#{title}")
-    button.submit.red-back(type="submit"): span Disown #{title}
+  //- form.search(name="deleteTerm", method="delete", action="/define")
+  //-   //- label.searchbox(for="term")  "#{title}" to Queertionary?
+  //-   input.hidden(placeholder="Term to Add", name="term", value="#{title}")
+  //-   button.submit.red-back(type="submit"): span Disown #{title}
 
   each entry in urban
     div.urban
