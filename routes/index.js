@@ -210,9 +210,9 @@ function call_urban(word, callback) {
 
 
 function call_flickr(word, callback) {
-  if ( word == 'bear' || word == 'otter' || word == 'cub' ) {
-    word = "gay " + word;
-  }
+  // if ( word == 'bear' || word == 'otter' || word == 'cub' ) {
+  //   word = "gay " + word;
+  // }
   var url = 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=' 
     + '02338b577d95e553204fbda618b301fd&format=json&nojsoncallback=1&tags=' + encodeURI(word);
   client.get(url, function parse_flickr(data, response) {
